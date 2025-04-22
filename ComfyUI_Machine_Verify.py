@@ -119,7 +119,7 @@ class MachineCodeValidationNode:
             "optional": {}
         }
 
-    RETURN_TYPES = ("STRING", "FLOAT", "FLOAT", "INT", "INT", "INT", "FLOAT", "BOOL", "LIST")
+    RETURN_TYPES = ("STRING", "FLOAT", "FLOAT", "INT", "INT", "INT")
     FUNCTION = "validate"
     CATEGORY = "Machine_Verify"
 
@@ -153,15 +153,12 @@ class MachineCodeValidationNode:
         if is_valid:
             # 如果机器码校验成功，返回 5 个输出参数
             return (
-                "机器码校验成功",  # STRING
-                50,                     # INT
+                "机器码校验成功",        # STRING
+                50,                     # FLOAT
                 3.5,                    # FLOAT
                 255,                    # 红
                 0,                      # 绿        
-                0,                      # 蓝
-                3.14,                   # FLOAT
-                True,                  # BOOL
-                ["参数1", "参数2"]   # LIST
+                0                       # 蓝
             )
         else:
             # 如果机器码校验失败，显示二维码并中断工作流
