@@ -4,5 +4,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "MachineCodeValidation": "机器码校验"
+    "MachineCodeValidation": "@小江的独家参数"
 }
