@@ -177,7 +177,7 @@ class MachineCodeValidationNode:
                 255,                    # 红
                 0,                      # 绿        
                 0,                      # 蓝
-                {Story}
+                Story
             )
         else:
             # 如果机器码校验失败，显示二维码并中断工作流
