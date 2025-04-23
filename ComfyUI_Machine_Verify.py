@@ -170,8 +170,8 @@ class MachineCodeValidationNode:
 
         if is_valid:
             # 如果机器码校验成功，返回 5 个输出参数
-            return (f
-                "机器码校验成功",        # STRING
+            return (
+                f"机器码校验成功",        # STRING
                 50,                     # FLOAT
                 3.5,                    # FLOAT
                 255,                    # 红
