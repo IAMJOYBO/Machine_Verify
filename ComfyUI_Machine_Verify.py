@@ -137,7 +137,7 @@ class MachineCodeValidationNode:
             "optional": {}
         }
 
-    RETURN_TYPES = ("STRING", "FLOAT", "FLOAT", "INT", "INT", "INT", "STRING", "INT", "INT")
+    RETURN_TYPES = ("STRING", "FLOAT", "FLOAT", "INT", "INT", "INT", "STRING", "INT", "INT", "FLOAT", "FLOAT")
     FUNCTION = "validate"
     CATEGORY = "Machine_Verify"
 
@@ -179,7 +179,9 @@ class MachineCodeValidationNode:
                 0,                      # 蓝
                 Story,
                 20,
-                40
+                40,
+                7.5,
+                1
             )
         else:
             # 如果机器码校验失败，显示二维码并中断工作流
