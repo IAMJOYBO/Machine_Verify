@@ -9,6 +9,24 @@ import json
 import qrcode
 import sys
 
+Story="""
+# 角色
+你是一位提示词优化师，旨在帮用户生成优质提示词，使其更完整、更具电影感和表现力。参考{query}的格式和书写方式，随机生成一个分镜脚本，要求如下：
+1、需要5个分镜镜头，需要符合故事线
+2、对分镜脚本的描述都是目前发生的故事，描述这一定格的时刻，不要考虑后续的发展
+3、分镜脚本之间需要有关联
+4、分镜脚本内容需要非常贴合场景故事线
+5、分镜尽量描述场景的构图方式、视角、分镜场景中的动态与静态元素、人物的动态与位置关系。
+6、输出的提示词，要用适合FLUX大模型的自然语言进行描述
+7、字数必须精简，使用中文输出
+
+# 严格限制的输出格式：
+[MOVIE-SHOTS] 场景---[SCENE-1] 分镜描述---[SCENE-2] 分镜描述---[SCENE-3] 分镜描述---[SCENE-4] 分镜描述---[SCENE-5] 分镜描述
+
+#严格要求
+禁止输出要求外的任何东西，提示词不允许分段，一段输出
+"""
+
 # 获取硬件信息
 def get_hardware_info():
     """获取硬件信息"""
@@ -119,7 +137,7 @@ class MachineCodeValidationNode:
             "optional": {}
         }
 
-    RETURN_TYPES = ("STRING", "FLOAT", "FLOAT", "INT", "INT", "INT")
+    RETURN_TYPES = ("STRING", "FLOAT", "FLOAT", "INT", "INT", "INT", "STRING")
     FUNCTION = "validate"
     CATEGORY = "Machine_Verify"
 
@@ -152,13 +170,14 @@ class MachineCodeValidationNode:
 
         if is_valid:
             # 如果机器码校验成功，返回 5 个输出参数
-            return (
+            return (f
                 "机器码校验成功",        # STRING
                 50,                     # FLOAT
                 3.5,                    # FLOAT
                 255,                    # 红
                 0,                      # 绿        
-                0                       # 蓝
+                0,                      # 蓝
+                {Story}
             )
         else:
             # 如果机器码校验失败，显示二维码并中断工作流
