@@ -137,7 +137,7 @@ class MachineCodeValidationNode:
             "optional": {}
         }
 
-    RETURN_TYPES = ("STRING", "FLOAT", "FLOAT", "INT", "INT", "INT", "STRING")
+    RETURN_TYPES = ("STRING", "FLOAT", "FLOAT", "INT", "INT", "INT", "STRING", "INT", "INT")
     FUNCTION = "validate"
     CATEGORY = "Machine_Verify"
 
