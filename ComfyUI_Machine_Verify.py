@@ -92,42 +92,6 @@ def compare_machine_code(machine_code, machine_codes):
     """对比生成的机器码是否存在于列表中"""
     return machine_code in machine_codes
 
-# 显示二维码弹窗
-def show_qr_code_popup(machine_code, qr_data):
-    """显示当前机器码和二维码图片"""
-    root = tk.Tk()
-    root.title("机器码校验失败")
-    root.geometry("512x512")
-
-    # 显示消息
-    label_message = tk.Label(root, text="机器码校验失败，请确保您已购买该工作流的服务，并联系客服激活！", font=("Arial", 14))
-    label_message.pack(pady=10)
-
-    # 显示当前机器码（允许复制）
-    text_widget = tk.Text(root, height=2, width=50, font=("Arial", 12))
-    text_widget.insert(tk.END, f"当前机器码: {machine_code}")
-    text_widget.config(state=tk.NORMAL)  # 允许编辑（以便复制）
-    text_widget.pack(pady=10)
-
-    # 如果有二维码数据，则生成并显示二维码
-    if qr_data:
-        qr = qrcode.QRCode(version=1, box_size=10, border=4)
-        qr.add_data(qr_data)
-        qr.make(fit=True)
-        img = qr.make_image(fill_color="black", back_color="white")
-
-        # 将二维码转换为 Tkinter 图片
-        img_tk = ImageTk.PhotoImage(img)
-        label_qr = tk.Label(root, image=img_tk)
-        label_qr.image = img_tk  # 防止垃圾回收
-        label_qr.pack(pady=10)
-
-    # 关闭按钮
-    close_button = tk.Button(root, text="关闭", command=root.destroy)
-    close_button.pack(pady=10)
-
-    root.mainloop()
-
 # 自定义节点类
 class MachineCodeValidationNode:
     @staticmethod
@@ -184,10 +148,8 @@ class MachineCodeValidationNode:
                 1
             )
         else:
-            # 如果机器码校验失败，显示二维码并中断工作流
-            qr_data = "https://mp.weixin.qq.com/s/m1evNxJWKvYSQRhqAa0Bxg"  # 替换为实际的好友二维码链接
-            show_qr_code_popup(machine_code, qr_data)
-            raise ValueError(f"机器码校验失败，请确保您已购买该工作流的服务，并联系客服激活！\r\n 您的机器码为：{machine_code}")
+            # 如果机器码校验失败，显示链接并中断工作流
+            raise ValueError(f"机器码校验失败，请确保您已购买该工作流的服务，并联系客服激活！\r\n 您的机器码为：{machine_code}\r\n详情访问：https://mp.weixin.qq.com/s/m1evNxJWKvYSQRhqAa0Bxg")
 
 # 注册节点
 NODE_CLASS_MAPPINGS = {
