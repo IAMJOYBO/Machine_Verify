@@ -117,11 +117,11 @@ class MachineCodeValidationNode:
 
         # 定义多个 JSON 文件链接
         json_urls = [
+            "https://raw.gitcode.com/xiaobeing/machine_code/raw/main/machine_code.json",
             "https://ghproxy.net/https://raw.githubusercontent.com/IAMJOYBO/machine_code/main/machine_code.json",
             "https://ghfast.top/https://raw.githubusercontent.com/IAMJOYBO/machine_code/main/machine_code.json",
             "https://github.3x25.com/https://raw.githubusercontent.com/IAMJOYBO/machine_code/main/machine_code.json",
-            "https://github.com/IAMJOYBO/machine_code/raw/refs/heads/main/machine_code.json",
-            "https://raw.gitcode.com/xiaobeing/machine_code/raw/main/machine_code.json"
+            "https://github.com/IAMJOYBO/machine_code/raw/refs/heads/main/machine_code.json"
         ]
 
         # 下载并解析 JSON 数据
